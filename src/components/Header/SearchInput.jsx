@@ -1,6 +1,6 @@
 const SearchInput = () => {
   return (
-    <form className="relative" onSubmit={() => {}}>
+    <form className="relative mr-3" onSubmit={() => {}}>
       <div className="absolute right-[13px] top-1/2 -translate-y-1/2">
         <svg
           width="18"
@@ -23,7 +23,7 @@ const SearchInput = () => {
       <input
         type="text"
         name="search"
-        className="bg-high-light-gray text-heading-s max-h-[36px] max-w-[166px] rounded-[5px] pl-[16px] shadow md:h-14"
+        className="max-h-[36px] max-w-[166px] rounded-[5px] bg-high-light-gray pl-[16px] text-heading-s shadow md:h-14"
         placeholder="Search..."
       />
     </form>
