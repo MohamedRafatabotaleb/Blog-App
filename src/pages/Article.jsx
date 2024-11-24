@@ -1,18 +1,21 @@
-import Header from "./Header/Header";
+import { useParams, useLocation } from "react-router-dom";
 
-const SubPage = () => {
+const Article = () => {
+  const { article } = useParams();
+  const location = useLocation();
+  const { author } = location.state || {}; // استخراج بيانات المؤلف
+
   const headingStyle = "mb-4 font-sans text-body-l";
   const paragraphStyle = "mb-8 font-serif text-body-s";
   return (
     <div>
-      <Header />
       <div className="mx-auto max-w-[1216px]">
         {/* Main Content */}
         <main className="p-6">
           <div className="mt-[16px] h-[200px] rounded-md p-2">
             {/* title */}
             <div className="inline-flex h-[28px] w-auto items-center justify-center rounded-[6px] bg-bright-blue p-[4px_10px_4px_10px] text-heading-s text-white">
-              Technology
+              {article}
             </div>
 
             {/* Text shortcut */}
@@ -30,7 +33,9 @@ const SubPage = () => {
                 alt="Photo Author"
               />
 
-              <p className="pl-3 text-heading-s text-soft-gray">author</p>
+              <p className="pl-3 text-heading-s text-soft-gray">
+                {author || "Unknown Author"}
+              </p>
 
               <p className="text-heading-ss pl-5 text-soft-gray">
                 Nov 17, 2022
@@ -163,4 +168,4 @@ const SubPage = () => {
   );
 };
 
-export default SubPage;
+export default Article;

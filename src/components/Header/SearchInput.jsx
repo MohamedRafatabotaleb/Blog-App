@@ -1,6 +1,16 @@
+import React from "react";
+
 const SearchInput = () => {
+  const handleInputChange = (e) => {
+    const searchTerm = e.target.value;
+
+    // Dispatch a custom event with the search term
+    const searchEvent = new CustomEvent("searchEvent", { detail: searchTerm });
+    window.dispatchEvent(searchEvent);
+  };
+
   return (
-    <form className="relative mr-3" onSubmit={() => {}}>
+    <form className="relative mr-3" onSubmit={(e) => e.preventDefault()}>
       <div className="absolute right-[13px] top-1/2 -translate-y-1/2">
         <svg
           width="18"
@@ -23,8 +33,9 @@ const SearchInput = () => {
       <input
         type="text"
         name="search"
-        className="max-h-[36px] max-w-[166px] rounded-[5px] bg-high-light-gray pl-[16px] text-heading-s shadow md:h-14"
-        placeholder="Search..."
+        className="max-h-[36px] max-w-[180px] rounded-[5px] bg-high-light-gray pl-[16px] text-heading-s shadow md:h-14"
+        placeholder="Search by title..."
+        onChange={handleInputChange}
       />
     </form>
   );
