@@ -1,52 +1,59 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Article = () => {
-  const { article } = useParams();
   const location = useLocation();
-  const { author } = location.state || {}; // استخراج بيانات المؤلف
+  const {
+    articleAuthorName,
+    articleTitleText,
+    articleTitle,
+    articleDate,
+    articleAuthorPhoto,
+    articleMainPhoto,
+  } = location.state || {};
 
   const headingStyle = "mb-4 font-sans text-body-l";
   const paragraphStyle = "mb-8 font-serif text-body-s";
   return (
     <div>
-      <div className="mx-auto max-w-[1216px]">
+      <div className="mx-auto max-w-[800px]">
         {/* Main Content */}
         <main className="p-6">
           <div className="mt-[16px] h-[200px] rounded-md p-2">
             {/* title */}
             <div className="inline-flex h-[28px] w-auto items-center justify-center rounded-[6px] bg-bright-blue p-[4px_10px_4px_10px] text-heading-s text-white">
-              {article}
+              {articleTitle || "Unknown Title"}
             </div>
 
             {/* Text shortcut */}
             <div className="mt-4 line-clamp-2 text-body-xl leading-10">
-              The Impact of Technology on the Workplace: How Technology is
+              {/*   The Impact of Technology on the Workplace: How Technology is
               Changing The Impact of Technology on the Workplace: How Technology
-              is Changing
+              is Changing */}
+              {articleTitleText}
             </div>
 
             {/* Author */}
             <div className="flex items-center pt-5">
               <img
                 className="h-7 w-7 rounded-full shadow-md"
-                src="https://fakeimg.pl/100x100/000000?text=%F0%9F%99%82&font_size=60"
+                src={articleAuthorPhoto}
                 alt="Photo Author"
               />
 
               <p className="pl-3 text-heading-s text-soft-gray">
-                {author || "Unknown Author"}
+                {articleAuthorName || "Unknown Author"}
               </p>
 
-              <p className="text-heading-ss pl-5 text-soft-gray">
-                Nov 17, 2022
+              <p className="pl-5 text-heading-ss text-soft-gray">
+                {articleDate || "Unknown Date"}
               </p>
             </div>
           </div>
           {/* Image */}
           <img
-            src="https://fakeimg.pl/800x462/dcdcdc?font=bebas"
+            src={articleMainPhoto}
             alt="Cityscape"
-            className="mb-6 w-full rounded-lg"
+            class="mb-6 w-full rounded-lg"
           />
 
           {/* Article Content */}
@@ -97,7 +104,7 @@ const Article = () => {
             </p>
 
             {/* Quote */}
-            <blockquote className="text-body-ls bg-mid-white my-8 rounded-[12px] border-l-4 border-custom-gray p-8 font-serif italic text-midnight-blue">
+            <blockquote className="my-8 rounded-[12px] border-l-4 border-custom-gray bg-mid-white p-8 font-serif text-body-ls italic text-midnight-blue">
               "Traveling can expose you to new environments and potential health
               risks, so it’s crucial to take precautions to stay safe and
               healthy."
@@ -105,7 +112,7 @@ const Article = () => {
 
             {/* Secondary Image */}
             <img
-              src="https://fakeimg.pl/800x462/dcdcdc?font=bebas"
+              src={articleMainPhoto}
               alt="Traveler"
               className="mb-6 w-full rounded-lg"
             />

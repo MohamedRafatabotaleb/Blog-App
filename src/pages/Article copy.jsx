@@ -1,18 +1,22 @@
-import Header from "./Header/Header";
+import { useParams, useLocation } from "react-router-dom";
+import authorArticle from "../assets/AuthorArticle.png";
 
-const SubPage = () => {
+const Article = () => {
+  const { article } = useParams();
+  const location = useLocation();
+  const { author } = location.state || {};
+
   const headingStyle = "mb-4 font-sans text-body-l";
   const paragraphStyle = "mb-8 font-serif text-body-s";
   return (
     <div>
-      <Header />
       <div className="mx-auto max-w-[1216px]">
         {/* Main Content */}
         <main className="p-6">
           <div className="mt-[16px] h-[200px] rounded-md p-2">
             {/* title */}
             <div className="inline-flex h-[28px] w-auto items-center justify-center rounded-[6px] bg-bright-blue p-[4px_10px_4px_10px] text-heading-s text-white">
-              Technology
+              {article}
             </div>
 
             {/* Text shortcut */}
@@ -26,13 +30,15 @@ const SubPage = () => {
             <div className="flex items-center pt-5">
               <img
                 className="h-7 w-7 rounded-full shadow-md"
-                src="https://fakeimg.pl/100x100/000000?text=%F0%9F%99%82&font_size=60"
+                src={authorArticle}
                 alt="Photo Author"
               />
 
-              <p className="pl-3 text-heading-s text-soft-gray">author</p>
+              <p className="pl-3 text-heading-s text-soft-gray">
+                {author || "Unknown Author"}
+              </p>
 
-              <p className="text-heading-ss pl-5 text-soft-gray">
+              <p className="pl-5 text-heading-ss text-soft-gray">
                 Nov 17, 2022
               </p>
             </div>
@@ -92,7 +98,7 @@ const SubPage = () => {
             </p>
 
             {/* Quote */}
-            <blockquote className="text-body-ls bg-mid-white my-8 rounded-[12px] border-l-4 border-custom-gray p-8 font-serif italic text-midnight-blue">
+            <blockquote className="my-8 rounded-[12px] border-l-4 border-custom-gray bg-mid-white p-8 font-serif text-body-ls italic text-midnight-blue">
               "Traveling can expose you to new environments and potential health
               risks, so it’s crucial to take precautions to stay safe and
               healthy."
@@ -163,4 +169,4 @@ const SubPage = () => {
   );
 };
 
-export default SubPage;
+export default Article;
